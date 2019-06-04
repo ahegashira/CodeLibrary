@@ -19,12 +19,12 @@ def getBlogs(request):
 
 def getWebsites(request):
     websites_list = Website.objects.all()
-    return render(request, 'codelibapp/website_list', {'websites_list' : websites_list})
+    return render(request, 'codelibapp/website_list.html', {'websites_list' : websites_list})
 
 def getMeetups(request):
     meetups_list = Meetup.objects.all()
-    return render(request, 'codelibapp/meetups_list', {'meetups_list' : meetups_list})
+    return render(request, 'codelibapp/meetup_list.html', {'meetups_list' : meetups_list})
 
 def getDevelopers(request):
     developers_list = Developer.objects.all()
-    return render(request, 'codelibapp/developers_list', {'developers_list' : developers_list})
+    return render(request, 'codelibapp/developer_list.html', {'developers_list' : developers_list})
