@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Products</h2>
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Publisher</th>
+        <th>Pages</th>
+        <th>ISBN10</th>
+        <th>ISBN13</th>
+        <th>Publish Date</th>
+        <th>Description</th>
+    </tr>
+    {% for b in books_list %}
+    <tr>
+        <td>{{ b.book_title }}</td>
+        <td>{{ b.book_author }}</td>
+        <td>{{ b.book_publisher }}</td>
+        <td>{{ b.book_pages }}</td>
+        <td>{{ b.book_isbn10 }}</td>
+        <td>{{ b.book_isbn13 }}</td>
+        <td>{{ b.book_pub_date }}</td>
+        <td>{{ b.book_description }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
