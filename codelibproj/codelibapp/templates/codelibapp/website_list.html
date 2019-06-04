@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Websites</h1>
+<table class='table'>
+    <tr>
+        <th>Title</th>
+        <th>URL</th>
+    </tr>
+    {% for w in websites_list %}
+    <tr>
+        <td>{{ w.website_title }}</td>
+        <td>{{ w.website_url }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
