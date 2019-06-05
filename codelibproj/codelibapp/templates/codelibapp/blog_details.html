@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h4>{{ blog_detail.blog_title }} by {{ blog_detail.blog_author_first }} {{ blog_detail.blog_author_last }}</h4>
+    <table class="table">
+        <tr class="table-info">
+            <td>URL</td>
+        </tr>
+        <tr>
+            <td>{{ blog_detail.blog_url }}</td>
+        </tr>
+    </table>
+    <table class="table"> 
+        <tr class="table-info">
+            <td>{{ blog_detail.blog_description }}</td>
+        </tr>
+    </table>    
+{% endblock %}

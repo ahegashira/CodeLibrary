@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h4>{{ meetup_detail.meetup_title }} in {{ meetup_detail.meetup_city }}, {{meetup_detail.meetup.state }}</h4>
+    <table class="table">
+        <tr class="table-info">
+            <td>URL</td>
+        </tr>
+        <tr>
+            <td>{{ meetup_detail.meetup_url }}</td>
+        </tr>
+    </table>
+    <table class="table"> 
+        <tr>
+            <td>{{ meetup_detail.meetup_description }}</td>
+        </tr>
+    </table>    
+{% endblock %}

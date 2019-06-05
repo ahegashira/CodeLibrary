@@ -8,7 +8,7 @@
     </tr>
     {% for w in websites_list %}
     <tr>
-        <td>{{ w.website_title }}</td>
+        <td><a href="{% url 'website_detail' id=w.id %}">{{ w.website_title }}</a></td>
         <td>{{ w.website_url }}</td>
     </tr>
     {% endfor %}

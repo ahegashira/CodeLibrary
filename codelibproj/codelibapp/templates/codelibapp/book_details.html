@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h4>{{ book_detail.book_title }} by {{ book_detail.book_author }}</h4>
+    <table class="table">
+        <tr class="table-info">
+            <td>Publisher</td>
+            <td>Publish Date</td>
+            <td>Pages</td>
+        </tr>
+        <tr>
+            <td>{{ book_detail.book_publisher }}</td>
+            <td>{{ book_detail.book_pub_date }}</td>
+            <td>{{ book_detail.book_pages }}</td>
+        </tr>
+    </table>
+    <table class="table">  
+        <tr>
+            <td>ISBN-10</td>
+            <td>ISBN-13</td>
+        </tr>
+        <tr>
+            <td>{{ book_detail.book_isbn10 }}</td>
+            <td>{{ book_detail.book_isbn13 }}</td>
+        </tr>
+    </table>
+    <table class="table"> 
+        <tr>
+            <td>{{ book_detail.book_description }}</td>
+        </tr>
+    </table>    
+{% endblock %}

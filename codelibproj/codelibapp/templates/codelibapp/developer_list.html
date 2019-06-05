@@ -4,14 +4,10 @@
 <table class='table'>
     <tr>
         <th>Name</th>
-        <th>Twitter</th>
-        <th>Specialties</th>
     </tr>
     {% for d in developers_list %}
     <tr>
-        <td>{{ d.dev_first_name }} {{ d.dev_last_name }}</td>
-        <td>{{ d.dev_twitter }}</td>
-        <td>{{ d.dev_specialty }}</td>
+        <td><a href="{% url 'developer_detail' id=d.id %}"> {{ d.dev_first_name }} {{ d.dev_last_name }}</a></td>
     </tr>
     {% endfor %}
 </table>
