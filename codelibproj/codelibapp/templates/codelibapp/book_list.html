@@ -5,23 +5,11 @@
     <tr>
         <th>Title</th>
         <th>Author</th>
-        <th>Publisher</th>
-        <th>Pages</th>
-        <th>ISBN10</th>
-        <th>ISBN13</th>
-        <th>Publish Date</th>
-        <th>Description</th>
     </tr>
     {% for b in books_list %}
     <tr>
-        <td>{{ b.book_title }}</td>
+        <td><a href="{% url 'book_detail' id=b.id %}">{{ b.book_title }}</a></td>
         <td>{{ b.book_author }}</td>
-        <td>{{ b.book_publisher }}</td>
-        <td>{{ b.book_pages }}</td>
-        <td>{{ b.book_isbn10 }}</td>
-        <td>{{ b.book_isbn13 }}</td>
-        <td>{{ b.book_pub_date }}</td>
-        <td>{{ b.book_description }}</td>
     </tr>
     {% endfor %}
 </table>

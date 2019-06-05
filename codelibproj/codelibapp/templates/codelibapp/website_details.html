@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h4>{{ website_detail.website_title }}</h4>
+    <table class="table">
+        <tr class="table-info">
+            <td>URL</td>
+        </tr>
+        <tr>
+            <td>{{ website_detail.website_url }}</td>
+        </tr>
+    </table>
+    <table class="table"> 
+        <tr class="table-info">
+            <td>{{ website_detail.website_description }}</td>
+        </tr>
+    </table>    
+{% endblock %}

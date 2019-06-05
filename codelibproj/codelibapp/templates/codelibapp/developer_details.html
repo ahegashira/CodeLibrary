@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h4>{{ developer_detail.dev_first_name }} {{ developer_detail.dev_last_name }}</h4>
+    <table class="table">
+        <tr class="table-info">
+            <td>Twitter</td>
+        </tr>
+        <tr>
+            <td>{{ developer_detail.dev_twitter }}</td>
+        </tr>
+    </table>
+    <table class="table"> 
+        <tr class="table-info">
+            <td>{{ developer_detail.dev_specialty }}</td>
+        </tr>
+    </table>    
+{% endblock %}
