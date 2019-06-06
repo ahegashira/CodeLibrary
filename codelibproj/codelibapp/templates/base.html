@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -19,12 +22,25 @@
 
             </div>
             <ul class="nav navbar-nav">
-                    <li><a href="{% url 'types' %}">Resource Types -></a></li>
-                    <li><a href="{% url 'books' %}">Books</a></li>
-                    <li><a href="{% url 'blogs' %}">Blogs</a></li>
-                    <li><a href="{% url 'websites' %}">Websites</a></li>
-                    <li><a href="{% url 'meetups' %}">Meetups</a></li>
-                    <li><a href="{% url 'developers' %}">Devs</a></li>
+                <li><a href="{% url 'types' %}">Resource Types</a></li>
+                <li><a href="{% url 'books' %}">Books</a></li>
+                <li><a href="{% url 'blogs' %}">Blogs</a></li>
+                <li><a href="{% url 'websites' %}">Websites</a></li>
+                <li><a href="{% url 'meetups' %}">Meetups</a></li>
+                <li><a href="{% url 'developers' %}">Devs</a></li>
+                <li><div class="dropdown show">
+                        <button class="btn btn-outline-success my-2 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Add Items
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'newbook' %}">Add Books</a><br>
+                            <a class="dropdown-item" href="{% url 'newblog' %}">Add Blogs</a><br>
+                            <a class="dropdown-item" href="{% url 'newwebsite' %}">Add Websites</a><br>
+                            <a class="dropdown-item" href="{% url 'newmeetup' %}">Add Meetups</a><br>
+                            <a class="dropdown-item" href="{% url 'newdeveloper' %}">Add Devs</a>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>

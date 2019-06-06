@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from .models import ResourceType, Website, Meetup, Developer, Book, Blog
+from .forms import WebsiteForm, BookForm, BlogForm, MeetupForm, DeveloperForm
 
-# Create your views here.
+# <---------- Page Views ---------->
+
 def index(request):
     return render(request, 'codelibapp/index.html')
 
@@ -63,3 +65,65 @@ def getDeveloperDetails(request, id):
         'developer_detail' : developer_detail
     }
     return render(request, 'codelibapp/developer_details.html', context=context)
+
+# <---------- Form Views ---------->
+
+def newWebsite(request):
+    form = WebsiteForm
+    if request.method == 'POST':
+        form=WebsiteForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit = True)
+            post.save()
+            form = WebsiteForm()
+    else:
+        form = WebsiteForm()
+    return render(request, 'codelibapp/newwebsite.html', {'form' : form})
+
+def newMeetup(request):
+    form = MeetupForm
+    if request.method == 'POST':
+        form = MeetupForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit = True)
+            post.save()
+            form = MeetupForm()
+    else:
+        form = MeetupForm()
+    return render(request, 'codelibapp/newmeetup.html', {'form' : form})
+
+def newDeveloper(request):
+    form = DeveloperForm
+    if request.method == 'POST':
+        form = MeetupForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit = True)
+            post.save()
+            form = DeveloperForm()
+    else:
+        form = DeveloperForm()
+    return render(request, 'codelibapp/newdeveloper.html', {'form' : form})
+
+def newBook(request):
+    form = BookForm
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit = True)
+            post.save()
+            form = BookForm()
+    else:
+        form = BookForm()
+    return render(request, 'codelibapp/newbook.html', {'form' : form})
+
+def newBlog(request):
+    form = BlogForm
+    if request.method == 'POST':
+        form = BlogForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit = True)
+            post.save()
+            form = BlogForm()
+    else:
+        form = BlogForm()
+    return render(request, 'codelibapp/newblog.html', {'form' : form})
