@@ -19,5 +19,6 @@ urlpatterns=[
     path('getdevelopers/', views.getDevelopers, name='developers'),
     path('getDeveloperDetails/<int:id>', views.getDeveloperDetails, name='developer_detail'),
     path('newDeveloper/', views.newDeveloper, name = 'newdeveloper'),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('loginmessage/', views.loginmessage, name='loginmessage'),
+    path('logoutmessage/', views.logoutmessage, name='logoutmessage'),
 ]

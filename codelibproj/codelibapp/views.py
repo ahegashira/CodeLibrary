@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import ResourceType, Website, Meetup, Developer, Book, Blog
 from .forms import WebsiteForm, BookForm, BlogForm, MeetupForm, DeveloperForm
+from django.contrib.auth.decorators import login_required
 
 # <---------- Page Views ---------->
 
@@ -67,7 +68,7 @@ def getDeveloperDetails(request, id):
     return render(request, 'codelibapp/developer_details.html', context=context)
 
 # <---------- Form Views ---------->
-
+@login_required
 def newWebsite(request):
     form = WebsiteForm
     if request.method == 'POST':
@@ -80,6 +81,7 @@ def newWebsite(request):
         form = WebsiteForm()
     return render(request, 'codelibapp/newwebsite.html', {'form' : form})
 
+@login_required
 def newMeetup(request):
     form = MeetupForm
     if request.method == 'POST':
@@ -92,6 +94,7 @@ def newMeetup(request):
         form = MeetupForm()
     return render(request, 'codelibapp/newmeetup.html', {'form' : form})
 
+@login_required
 def newDeveloper(request):
     form = DeveloperForm
     if request.method == 'POST':
@@ -104,6 +107,7 @@ def newDeveloper(request):
         form = DeveloperForm()
     return render(request, 'codelibapp/newdeveloper.html', {'form' : form})
 
+@login_required
 def newBook(request):
     form = BookForm
     if request.method == 'POST':
@@ -116,6 +120,7 @@ def newBook(request):
         form = BookForm()
     return render(request, 'codelibapp/newbook.html', {'form' : form})
 
+@login_required
 def newBlog(request):
     form = BlogForm
     if request.method == 'POST':
@@ -127,3 +132,11 @@ def newBlog(request):
     else:
         form = BlogForm()
     return render(request, 'codelibapp/newblog.html', {'form' : form})
+
+# <---------- Authentication ---------->
+
+def loginmessage(request):
+    return render(request, 'codelibapp/loginmessage.html')
+
+def logoutmessage(request):
+    return render(request, 'codelibapp/logoutmessage.html')

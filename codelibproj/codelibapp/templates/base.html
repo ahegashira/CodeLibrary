@@ -15,32 +15,32 @@
     <div style="background-color: Navy; color: white;">
         <h1>Code Library</h1>
     </div>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
+    <nav class="nav navbar-default">
+        <div class="navbar-collapse collapse justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="{% url 'index' %}">Home</a>
 
             </div>
-            <ul class="nav navbar-nav">
-                <li><a href="{% url 'types' %}">Resource Types</a></li>
+            <ul class="nav navbar-nav mr-auto">
                 <li><a href="{% url 'books' %}">Books</a></li>
                 <li><a href="{% url 'blogs' %}">Blogs</a></li>
                 <li><a href="{% url 'websites' %}">Websites</a></li>
                 <li><a href="{% url 'meetups' %}">Meetups</a></li>
                 <li><a href="{% url 'developers' %}">Devs</a></li>
-                <li><div class="dropdown show">
-                        <button class="btn btn-outline-success my-2 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Add Items
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{% url 'newbook' %}">Add Books</a><br>
-                            <a class="dropdown-item" href="{% url 'newblog' %}">Add Blogs</a><br>
-                            <a class="dropdown-item" href="{% url 'newwebsite' %}">Add Websites</a><br>
-                            <a class="dropdown-item" href="{% url 'newmeetup' %}">Add Meetups</a><br>
-                            <a class="dropdown-item" href="{% url 'newdeveloper' %}">Add Devs</a>
-                        </div>
+            </ul>
+            <ul class="nav navbar-nav">    
+                <li><a class="nav navbar-nav" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                    Add Items</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'newbook' %}">Add Books</a><br>
+                        <a class="dropdown-item" href="{% url 'newblog' %}">Add Blogs</a><br>
+                        <a class="dropdown-item" href="{% url 'newwebsite' %}">Add Websites</a><br>
+                        <a class="dropdown-item" href="{% url 'newmeetup' %}">Add Meetups</a><br>
+                        <a class="dropdown-item" href="{% url 'newdeveloper' %}">Add Devs</a>
                     </div>
                 </li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
         </div>
     </nav>
