@@ -1,53 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<head>
-    <title>Code Library</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> -->
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+        <title>Code Library</title>
+    </head>
 
-<body>
-    <div style="background-color: Navy; color: white;">
-        <h1>Code Library</h1>
-    </div>
-    <nav class="nav navbar-default">
-        <div class="navbar-collapse collapse justify-content-between">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+    <body class="bg-success">
+        <nav class="navbar navbar-expand navbar-light bg-light">
+            <div class="navbar-collapse collapse">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{% url 'index' %}">Home</a>
 
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'books' %}">Books</a></li>
+                    <li><a href="{% url 'blogs' %}">Blogs</a></li>
+                    <li><a href="{% url 'websites' %}">Websites</a></li>
+                    <li><a href="{% url 'meetups' %}">Meetups</a></li>
+                    <li><a href="{% url 'developers' %}">Devs</a></li>
+                </ul>
+                <ul class="nav navbar-nav">    
+                    <li><a class="nav navbar-nav" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                        Add Items</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'newbook' %}">Add Books</a><br>
+                            <a class="dropdown-item" href="{% url 'newblog' %}">Add Blogs</a><br>
+                            <a class="dropdown-item" href="{% url 'newwebsite' %}">Add Websites</a><br>
+                            <a class="dropdown-item" href="{% url 'newmeetup' %}">Add Meetups</a><br>
+                            <a class="dropdown-item" href="{% url 'newdeveloper' %}">Add Developers</a>
+                        </div>
+                    </li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
             </div>
-            <ul class="nav navbar-nav mr-auto">
-                <li><a href="{% url 'books' %}">Books</a></li>
-                <li><a href="{% url 'blogs' %}">Blogs</a></li>
-                <li><a href="{% url 'websites' %}">Websites</a></li>
-                <li><a href="{% url 'meetups' %}">Meetups</a></li>
-                <li><a href="{% url 'developers' %}">Devs</a></li>
-            </ul>
-            <ul class="nav navbar-nav">    
-                <li><a class="nav navbar-nav" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-                    Add Items</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{% url 'newbook' %}">Add Books</a><br>
-                        <a class="dropdown-item" href="{% url 'newblog' %}">Add Blogs</a><br>
-                        <a class="dropdown-item" href="{% url 'newwebsite' %}">Add Websites</a><br>
-                        <a class="dropdown-item" href="{% url 'newmeetup' %}">Add Meetups</a><br>
-                        <a class="dropdown-item" href="{% url 'newdeveloper' %}">Add Devs</a>
-                    </div>
-                </li>
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-            </ul>
+        </nav>
+        <p>&nbsp;</p>
+        <div class="container bg-light">
+        {% block content %}
+        {% endblock content %}
         </div>
-    </nav>
-    <p>&nbsp;</p>
-    <div class="container">
-    {% block content %}
-    {% endblock content %}
-    </div>
-</body>
+        
+    <!-- <footer class="bg-light ">
+        &copy; Hiro Egashira
+    </footer> -->
+    </body>
 </html>

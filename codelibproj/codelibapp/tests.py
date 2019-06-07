@@ -1,13 +1,14 @@
 from django.test import TestCase
 from .models import ResourceType, Book, Blog, Website, Meetup, Developer
 from django.urls import reverse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
 import datetime
-""" from .forms import """
+from .forms import  WebsiteForm, MeetupForm, DeveloperForm, BookForm, BlogForm
 
 # Testing Models:
 # Test ResourceType
 class ResourceTypeTest(TestCase):
+
     def test_resourcestringOutput(self):
         resource=ResourceType(resource_type='New Type')
         self.assertEqual(str(resource), resource.resource_type)
@@ -17,10 +18,11 @@ class ResourceTypeTest(TestCase):
 
 # Test Book
 class BookTest(TestCase):
+
     def setUp(self):
         self.type=ResourceType(resource_type='New Book Resource Type')
         self.book_detail=Book(book_title='New Title',resource_type=self.type)
-
+    
     def test_string(self):
         self.assertEqual(str(self.book_detail),self.book_detail.book_title)
 
@@ -33,10 +35,11 @@ class BookTest(TestCase):
 
 # Test Blog
 class BLogTest(TestCase):
+
     def setUp(self):
         self.type=ResourceType(resource_type='New BLog Resource Type')
         self.blog_detail=Blog(blog_title='New Blog Title',resource_type=self.type)
-
+    
     def test_string(self):
         self.assertEqual(str(self.blog_detail),self.blog_detail.blog_title)
 
@@ -49,10 +52,11 @@ class BLogTest(TestCase):
 
 # Test Website
 class WebsiteTest(TestCase):
+
     def setUp(self):
         self.type=ResourceType(resource_type='New Website Resource Type')
         self.website_detail=Website(website_title='New Website Title',resource_type=self.type)
-
+    
     def test_string(self):
         self.assertEqual(str(self.website_detail),self.website_detail.website_title)
 
@@ -65,10 +69,11 @@ class WebsiteTest(TestCase):
 
 # Test Meetup
 class MeetupTest(TestCase):
+
     def setUp(self):
         self.type=ResourceType(resource_type='New Meetup Resource Type')
         self.meetup_detail=Meetup(meetup_title='New Meetup Title',resource_type=self.type)
-
+    
     def test_string(self):
         self.assertEqual(str(self.meetup_detail),self.meetup_detail.meetup_title)
 
@@ -81,10 +86,11 @@ class MeetupTest(TestCase):
 
 # Test Developer
 class DeveloperTest(TestCase):
+
     def setUp(self):
         self.type=ResourceType(resource_type='New Developer Resource Type')
         self.developer_detail=Developer(dev_first_name='New Developer',resource_type=self.type)
-
+    
     def test_string(self):
         self.assertEqual(str(self.developer_detail),self.developer_detail.dev_first_name)
 
@@ -97,7 +103,7 @@ class DeveloperTest(TestCase):
 
 
 # Testing Views, Forms, Template:
-# Test Index
+# Test IWebsiteFormndex
 class IndexTest(TestCase):
     def test_view_url_accessible_by_name(self):
         response=self.client.get(reverse('index'))
@@ -117,21 +123,15 @@ class TestGetResource(TestCase):
         response = self.client.get(reverse('types'))
         self.assertEqual(response.status_code, 200)
 
-#Testing the template resource.html
+    #Testing the template resource.html    
     def test_view_uses_correct_template(self):
         response = self.client.get(reverse('types'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'codelibapp/resource_types.html')
+ 
 
-""" #newResource check the form
-class New_ResourceForm_Test(TestCase):
-
-def setUp(self):
-self.test_user=User.objects.create_user(username='Mona', password='P@ssw0rd1')
-self.resources_list = Resource.objects.create(resourcename='New Webpage', resourcetype='webpag', resourceurl='http://newwebpage.com', dateentered='2019-05-17', userid=self.test_user, resourcedescription='Good webpage to practice') """
-
-# getBooks
-class TestGetBook(TestCase):
+# Test getBooks
+class TestGetBooks(TestCase):
     def test_view_url_exists_at_desired_location(self):
         response = self.client.get('/codelibapp/books')
         self.assertEqual(response.status_code, 404)
@@ -140,16 +140,126 @@ class TestGetBook(TestCase):
         response = self.client.get(reverse('books'))
         self.assertEqual(response.status_code, 200)
 
-#Testing the template resource.html
+    #Testing the template resource.html    
     def test_view_uses_correct_template(self):
         response = self.client.get(reverse('books'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'codelibapp/book_list.html')
-# getBookDetails
-# getBlogs
-# getBlogDetails
-# getWebsiteDetails
-# getMeetups
-# getMeetupDetails
-# getDevelopers
-# getDeveloperDetails
+
+#Test newBook form
+class New_Book_Form_Test(TestCase):
+
+    def setUp(self):
+        self.user =User.objects.create(username='TestUser', password='P@ssw0rd1')
+        self.type=ResourceType.objects.create(resource_type='type')
+
+    def test_bookFormValid(self):
+        data={
+            'book_title': 'TestTitle',
+            'resource_type' :  self.type,
+            'user' : self.user,
+            'book_author' : 'TestAuthor',
+            'book_publisher' : 'TestPublisher' 
+        }
+        form = BookForm(data=data)
+        self.assertTrue(form.is_valid) 
+    
+    def test_bookFormInvalid(self):
+        data={
+            'book_title': 'TestTitle',
+            'resource_type' :  self.type,
+            'user' : self.user,
+            'book_author' : 'TestAuthor',
+            'book_publisher' : 'TestPublisher' 
+        }
+        form = BookForm(data=data)
+        self.assertFalse(form.is_valid()) 
+
+# Test NewBook authentication
+class New_Book_authentication_test(TestCase):
+    def setUp(self):
+        self.test_user=User.objects.create_user(username='TestUser', password='P@ssw0rd1')
+        self.type=ResourceType.objects.create(resource_type='TsetBook')
+        self.book = Book.objects.create(resource_type=self.type, user=self.test_user, book_title='TestTitle', book_author='TestAuthor', book_publisher='TestPublisher', book_pages=250, book_description='New Test Book Authentication')
+
+    def test_redirect_if_not_logged_in(self):
+        response=self.client.get(reverse('newbook'))
+        self.assertRedirects(response, '/accounts/login/?next=/codelibapp/newBook/')
+
+    def test_Logged_in_uses_correct_template(self):
+        login=self.client.login(username='TestUser', password='P@ssw0rd1')
+        response=self.client.get(reverse('newbook'))
+        self.assertEqual(str(response.context['user']), 'TestUser')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'codelibapp/newbook.html')
+
+# Test getBookDetails
+class TestGetBookDetails(TestCase):
+
+    def test_view_url_exists_at_desired_location(self):
+        response = self.client.get('/codelibapp/book_detail')
+        self.assertEqual(response.status_code, 404) 
+
+# Test getBlogs
+class TestGetBlogs(TestCase):
+    
+    def test_view_url_exists_at_desired_location(self):
+        response = self.client.get('/codelibapp/blogs')
+        self.assertEqual(response.status_code, 404)
+
+    def test_view_url_accessible_by_name(self):
+        response = self.client.get(reverse('blogs'))
+        self.assertEqual(response.status_code, 200)
+
+    #Testing the template resource.html    
+    def test_view_uses_correct_template(self):
+        response = self.client.get(reverse('blogs'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'codelibapp/blog_list.html')
+        
+# Test getBlogDetails
+class TestGetBlogDetails(TestCase):
+
+    def test_view_url_exists_at_desired_location(self):
+        response = self.client.get('/codelibapp/blog_detail')
+        self.assertEqual(response.status_code, 404) 
+
+# Test loginmessage
+class TestLoginMessage(TestCase):
+
+    def test_view_url_exists_at_desired_location(self):
+        response = self.client.get('/codelibapp/loginmessage')
+        self.assertEqual(response.status_code, 301)
+    
+    def test_view_url_accessible_by_name(self):
+        response = self.client.get(reverse('loginmessage'))
+        self.assertEqual(response.status_code, 200)
+    
+    #Testing the template loginmessage.html
+    def test_view_uses_correct_template(self):
+        response = self.client.get(reverse('loginmessage'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'codelibapp/loginmessage.html')
+
+# Test logoutmessage
+class TestLogoutMessage(TestCase):
+
+    def test_view_url_exists_at_desired_location(self):
+        response = self.client.get('/codelibapp/logoutmessage')
+        self.assertEqual(response.status_code, 301)
+    
+    def test_view_url_accessible_by_name(self):
+        response = self.client.get(reverse('logoutmessage'))
+        self.assertEqual(response.status_code, 200)
+
+    #Testing the template logoutmessage.html
+    def test_view_uses_correct_template(self):
+        response = self.client.get(reverse('logoutmessage'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'codelibapp/logoutmessage.html')
+
+
+
+
+
+
