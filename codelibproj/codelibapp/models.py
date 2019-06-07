@@ -85,6 +85,7 @@ class Developer(models.Model):
     dev_first_name = models.CharField(max_length = 100)
     dev_last_name = models.CharField(max_length = 100)
     dev_twitter = models.CharField(max_length = 51)
+    dev_topic = models.CharField(max_length = 255, null = True, blank = True)
     dev_specialty = models.TextField()
 
     def __str__(self):
